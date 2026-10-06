@@ -192,21 +192,25 @@ export default function TradingCard({ image, alt }: Props) {
           </div>
 
           <div className="tc-type">
-            <span>Creature — Product Manager</span>
+            <span>Legendary Creature — Human Productmancer</span>
             <span className="tc-gem" aria-hidden="true" />
           </div>
 
           <div className="tc-text">
             <p>
-              <b>Cognitive Science</b> — Fits products to how people think.
+              <b>Sensemaking</b> — Whenever Germaine enters a complex situation, investigate.
             </p>
             <p>
-              <b>Regulated Markets</b> — Ships within MAS and AML/CFT rules.
+              <b>Stakeholder Alchemy</b> — Whenever two or more players disagree, you may create a Solution token.
+            </p>
+
+            <p>
+              <b>Momentum</b> — Whenever you turn ambiguity into a decision, put a +1/+1 counter on Germaine.
             </p>
             <p className="tc-flavor">“Controlled chaos, by design.”</p>
           </div>
 
-          <div className="tc-foot">Illus. Germaine Chin · 001/001</div>
+          <div className="tc-foot">Illus. Germaine Chin · 023/008</div>
           <div className="tc-pt" title="Enneagram 7">
             7/7
           </div>

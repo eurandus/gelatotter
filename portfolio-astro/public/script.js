@@ -10,8 +10,9 @@
   var radius = 0;
   var ticking = false;
 
-  document.getElementById('yr').textContent = new Date().getFullYear();
-
+var yr = document.getElementById('yr');
+if (yr) yr.textContent = new Date().getFullYear();
+  
   // ---- motion preference (OS setting + manual toggle) ----
   var mq = window.matchMedia('(prefers-reduced-motion: reduce)');
   var saved = null;

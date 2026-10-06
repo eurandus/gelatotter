@@ -1,0 +1,234 @@
+---
+import { getCollection } from 'astro:content';
+import Base from '../layouts/Base.astro';
+import ProjectGrid from '../components/ProjectGrid.tsx';
+import { recommendations } from '../data/recommendations';
+
+const entries = (await getCollection('projects')).sort((a, b) => a.data.order - b.data.order);
+const projects = entries.map((e) => ({
+  id: e.id,
+  title: e.data.title,
+  kind: e.data.kind,
+  org: e.data.org,
+  summary: e.data.summary,
+  outcome: e.data.outcome,
+  thumbnail: e.data.thumbnail,
+  video: e.data.video,
+  href: e.data.external ?? `/work/${e.id}`,
+  external: Boolean(e.data.external),
+}));
+---
+
+<Base>
+  <main id="top">
+    <!-- HERO -->
+    <section class="hero">
+      <p class="eyebrow">Product Manager</p>
+      <h1>
+        Controlled chaos,<br />
+        <em>by design<svg viewBox="0 0 200 12" preserveAspectRatio="none" aria-hidden="true"><path d="M2 8 C 40 2, 80 11, 120 5 S 180 4, 198 7"></path></svg></em>
+      </h1>
+      <p class="lede">
+        I like to transform chaos into structured and <em>controlled</em> chaos. I bridge cutting-edge AI and human-centered design, using a background in Cognitive Science to build products that fit how people actually think and work.
+      </p>
+      <p class="creds">Advanced-CSPO® · CSM® · Chat Ambassador (SG IMH certified) · Agile Thinker</p>
+      <a class="btn" href="#work">See my work</a>
+      <p class="hint">Scroll to spin · click a card to open it ↓</p>
+    </section>
+
+    <!-- WORK (React: filterable project cards with hover previews) -->
+    <section class="block" id="work">
+      <h2>Case Studies &amp; Fun Projects</h2>
+      <p class="lede-sm">Hover a card to preview it. Case studies with a number on them show the result up front.</p>
+      <ProjectGrid client:load projects={projects} />
+      <p class="muted">Coming soon: PMP certification</p>
+    </section>
+
+    <!-- ABOUT -->
+    <section class="block alt" id="about">
+      <h2>Hello!</h2>
+      <div class="cols">
+        <div>
+          <p>I'm a Product Manager who bridges the gap between cutting-edge AI technology and human-centered design, leveraging my background in Cognitive Science to create AI products that truly understand how people think and work.</p>
+          <p>Currently Product Manager at <a href="https://www.phillipnova.com.sg/" target="_blank" rel="noopener">Phillip Nova</a>, I oversee trading platform ecosystems for the Singapore and Malaysia markets, leading automated account opening, client portal enhancements and single sign-on integration, all within complex regulatory frameworks.</p>
+        </div>
+        <div>
+          <h3>Journey to Product</h3>
+          <p>It started with a BSc in Cognitive Sciences from <a href="https://www.unimas.my/fcshd" target="_blank" rel="noopener">UNIMAS</a>, where I got fascinated by how humans process information, make decisions and learn. Concepts like cognitive load, mental models and attention directly shape how I design AI products and workflows.</p>
+          <h3>At a glance</h3>
+          <p>Upbeat, people-centered, driven by possibilities. <a href="https://www.16personalities.com/enfp-personality" target="_blank" rel="noopener">ENFP</a> · <a href="https://www.enneagraminstitute.com/type-7/" target="_blank" rel="noopener">Enneagram Type 7</a> · highest in Extraversion and Intellect/Imagination on the Big-Five.</p>
+        </div>
+      </div>
+      <h3>Behind the product…</h3>
+      <p>When I'm not in product strategy, I'm exploring complex narrative games to sharpen collaborative storytelling, scenario planning and creative problem-solving.</p>
+      <ul class="tags">
+        <li>Dungeons &amp; Dragons</li><li>Warhammer 40k</li><li>Pen &amp; paper RPGs</li><li>Souls games</li>
+      </ul>
+      <p class="links">
+        <a href="https://germainechinwc.mmm.page/" target="_blank" rel="noopener">Germaine's Tech ↗</a>
+        <a href="https://sand-avatar-046.notion.site/A-list-of-things-where-germaine-finds-it-useful-not-in-order-22e56b9036bb8055bb2fda64f6297a62" target="_blank" rel="noopener">Useful links ↗</a>
+        <a href="https://sand-avatar-046.notion.site/Today-I-Learned-TIL-Daily-learning-entries-22f56b9036bb803e9b0cd4d10241db4d?source=copy_link" target="_blank" rel="noopener">Today I Learned ↗</a>
+      </p>
+    </section>
+
+    <!-- 3D CAROUSEL -->
+    <section class="stage" id="stage" aria-label="Site pages and projects">
+      <div class="stage-pin">
+        <p class="stage-label">Selected pages &amp; work</p>
+        <div class="scene">
+          <div class="ring" id="ring">
+            <a class="card" href="#about"><span class="num">01</span><h3>About</h3><p>Cognitive science meets product management.</p><span class="open">Open →</span></a>
+            <a class="card" href="#experience"><span class="num">02</span><h3>Experience</h3><p>Fintech, ERP support and creative teaching.</p><span class="open">Open →</span></a>
+            <a class="card" href="#sss"><span class="num">03</span><h3>Sense · Solve · Ship</h3><p>How I think through a product.</p><span class="open">Open →</span></a>
+            <a class="card" href="/work/trading-onboarding-platform"><span class="num">04</span><h3>Trading Platform Case Study</h3><p>Online trading on-boarding platform.</p><span class="open">Open →</span></a>
+            <a class="card" href="https://sand-avatar-046.notion.site/A-KanBan-CaiBeng-Game-Too-Much-on-My-Plate-1fe56b9036bb80f5a174d2bc9858cf42?pvs=74" target="_blank" rel="noopener"><span class="num">05</span><h3>Kanban Game</h3><p>"Too Much on My Plate" for KanbanSG.</p><span class="open">Open ↗</span></a>
+            <a class="card" href="https://sand-avatar-046.notion.site/Portfolio-Revamp-22e56b9036bb800abdeed6e6e13b56a8?source=copy_link" target="_blank" rel="noopener"><span class="num">06</span><h3>Portfolio Revamp</h3><p>The process behind this site.</p><span class="open">Open ↗</span></a>
+            <a class="card" href="#writing"><span class="num">07</span><h3>Thinking about Thinking</h3><p>Notes on AI, product and cognition.</p><span class="open">Open →</span></a>
+            <a class="card" href="#resume"><span class="num">08</span><h3>Resume</h3><p>Latest version, updated March 2026.</p><span class="open">Open →</span></a>
+          </div>
+        </div>
+        <p class="stage-count"><span id="activeIdx">01</span> / 08</p>
+      </div>
+    </section>
+
+    <!-- EXPERIENCE -->
+    <section class="block alt" id="experience">
+      <h2>Professional Journey</h2>
+      <ol class="timeline">
+        <li>
+          <span class="when">Jan 2024 – Current</span>
+          <h3>Product Manager · Phillip Nova</h3>
+          <p><strong>Full product lifecycle.</strong> Ideation through launch and iteration in a fast-moving fintech landscape.</p>
+          <p><strong>Regulatory-compliant strategy.</strong> Roadmaps aligned with MAS, AML/CFT, SGX, Fair Trading Practice and the Securities and Futures Act.</p>
+          <p><strong>Agile leadership.</strong> Scrum across diverse developer teams: backlog, sprint planning and retros.</p>
+        </li>
+        <li>
+          <span class="when">Dec 2020 – Dec 2023</span>
+          <h3>Application Support Engineer / Analyst · Plexus Corp</h3>
+          <p>Improved ERP performance by 30% through analysis and cross-regional collaboration. Resolved 100+ P1/P2 incidents within SLA. Automated shipment compliance reports and supported Kinaxis supply chain planning systems.</p>
+        </li>
+        <li>
+          <span class="when">Jul 2020 – Nov 2020</span>
+          <h3>Associate System Analyst · META Research</h3>
+          <p>Early work in data analysis and data pipeline optimization.</p>
+        </li>
+        <li>
+          <span class="when">Jun 2019 – Jun 2020</span>
+          <h3>Art Instructor · Splitsplat</h3>
+          <p>Designed and taught a creative curriculum for diverse learners, applying cognitive learning methods.</p>
+        </li>
+        <li>
+          <span class="when">Jun – Aug 2018</span>
+          <h3>IT Application Intern · Singapore Aerospace Manufacturing</h3>
+        </li>
+      </ol>
+      <h3>Education</h3>
+      <p><strong>University of Malaysia Sarawak</strong> · BSc Cognitive Sciences, 2016–2019 · 3.69 CGPA. Focus on human cognition, decision-making and HCI. Final-year project on cognitive load theory and memory.</p>
+      <p><strong>Universiti Sains Malaysia</strong> · Master of Business Administration, September 2026 (Current)</p>
+    </section>
+
+    <!-- SSS -->
+    <section class="block" id="sss">
+      <h2>Sense, Solve, Ship</h2>
+      <p class="lede-sm">Germ's SDLC: how I put on the many hats of product management. Every product is different; if it doesn't work, try something else.</p>
+      <h3>The Aspiring AI PM's Mindset</h3>
+      <div class="grid">
+        <div class="tile"><h4>Data-centric thinking</h4><p>Learning loops and continuous hypothesis testing over feature lists.</p></div>
+        <div class="tile"><h4>Probabilistic reasoning</h4><p>Products that handle ambiguous AI output gracefully.</p></div>
+        <div class="tile"><h4>Emergent planning</h4><p>Roadmaps that evolve with AI capability and user behavior.</p></div>
+        <div class="tile"><h4>Human-AI collaboration</h4><p>Complementary intelligence that enhances people.</p></div>
+        <div class="tile"><h4>Anticipatory problem-solving</h4><p>Spot opportunities and risks before they get critical.</p></div>
+        <div class="tile"><h4>Ethical integration</h4><p>Fairness, transparency and accountability from day one.</p></div>
+      </div>
+      <h3>Daily workflow</h3>
+      <ol class="flow">
+        <li>Morning data synthesis</li><li>Continuous testing</li><li>Ethical checkpoints</li><li>Human-AI optimization</li><li>Rapid iteration</li>
+      </ol>
+    </section>
+
+    <!-- WRITING -->
+    <section class="block alt" id="writing">
+      <h2>Thinking about Thinking</h2>
+      <p class="lede-sm">Insights at the intersection of AI, product management and human cognition.</p>
+      <article class="post">
+        <span class="when">July 12, 2025 · MCP · Productivity</span>
+        <h3>Weekend notes: MCP and Manus AI</h3>
+        <p>MCP is a buzzword, but it's a newer discovery for me. Spent a Saturday morning going deeper and stress-testing Manus AI, hoping to bring MCP into my own work.</p>
+      </article>
+      <article class="post">
+        <span class="when">July 10, 2025 · LLM · Cognitive Science</span>
+        <h3>Reading: "Large Language Models and Cognitive Science" (arXiv:2409.02387)</h3>
+        <p>Thoughts on where LLMs and cognitive science intersect and how AI PMs can use that. Possibly the start of a Medium blog.</p>
+      </article>
+    </section>
+
+    <!-- RESUME -->
+    <section class="block" id="resume">
+      <h2>Resume</h2>
+      <p>Visa status: Singapore Permanent Resident (PR) · Updated March 2026</p>
+      <a class="btn" href="https://docs.google.com/document/d/1tUc41yCwKOdEyJEgecgtFhtWDzFBQyZo/edit?usp=sharing" target="_blank" rel="noopener">View my resume ↗</a>
+    </section>
+
+    <!-- RECOMMENDATIONS (generated from src/data/recommendations.ts) -->
+    <section class="recs" id="recommendations" aria-labelledby="rec-title">
+      <div class="recs-head">
+        <p class="eyebrow">What people say</p>
+        <h2 id="rec-title">Kind words from people <br />I've <em>worked with<svg viewBox="0 0 200 12" preserveAspectRatio="none" aria-hidden="true"><path d="M2 8 C 40 2, 80 11, 120 5 S 180 4, 198 7"></path></svg></em></h2>
+        <p class="recs-sub">Tap a card to read the full recommendation.</p>
+      </div>
+
+      <div class="rec-stage" id="rec-stage" tabindex="-1">
+        {recommendations.map((r) => (
+          <article class="rec-card">
+            <button class="rec-open" type="button" aria-haspopup="dialog">
+              <span class="rec-name">{r.name}</span>
+              <span class="rec-rule"></span>
+              <span class="rec-facts">
+                <b>{r.facts[0]}</b>
+                <b>{r.facts[1]}</b>
+              </span>
+              <span class="rec-quote">{r.quote}</span>
+              <span class="rec-more">Read full →</span>
+            </button>
+            <div class="rec-full" hidden>
+              <div data-role={r.role} data-meta={r.meta}></div>
+              {r.body.map((p) => <p>{p}</p>)}
+            </div>
+          </article>
+        ))}
+      </div>
+
+      <div class="recs-foot">
+        <button class="rec-arrow" type="button" id="rec-prev" aria-label="Previous recommendations">←</button>
+        <a class="rec-cta" href="https://www.linkedin.com/in/germainecwc/details/recommendations/" target="_blank" rel="noopener">See all on LinkedIn ↗</a>
+        <button class="rec-arrow" type="button" id="rec-next" aria-label="Next recommendations">→</button>
+      </div>
+
+      <dialog id="rec-dialog" aria-labelledby="rd-name">
+        <div class="rd-inner">
+          <button class="rd-close" type="button" id="rd-close"><span>Close ✕</span></button>
+          <h3 class="rd-name" id="rd-name"></h3>
+          <p class="rd-role" id="rd-role"></p>
+          <p class="rd-meta" id="rd-meta"></p>
+          <div class="rd-rule"></div>
+          <div class="rd-body" id="rd-body"></div>
+        </div>
+      </dialog>
+    </section>
+
+    <!-- CONNECT -->
+    <section class="block" id="connect">
+      <h2>Let's Connect!</h2>
+      <p>Say hi — I'd love to hear from you.</p>
+      <p class="links">
+        <a href="mailto:germainecwc@gmail.com">Email</a>
+        <a href="https://wa.me/6586712275" target="_blank" rel="noopener">WhatsApp</a>
+        <a href="https://www.linkedin.com/in/germainecwc/" target="_blank" rel="noopener">LinkedIn</a>
+        <a href="https://x.com/softserveotter" target="_blank" rel="noopener">X</a>
+        <a href="https://www.instagram.com/softserveotter/" target="_blank" rel="noopener">Instagram</a>
+      </p>
+    </section>
+  </main>
+
+  <script is:inline src="/script.js"></script>
+</Base>
